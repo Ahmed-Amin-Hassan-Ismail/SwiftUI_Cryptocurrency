@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct CircleButtonView: View {
+    let iconName: String
+    
     var body: some View {
-        Image(systemName: "heart.fill")
+        Image(systemName: iconName)
             .font(.system(.headline))
             .foregroundColor(Color.theme.accent)
             .frame(width: 50, height: 50)
@@ -25,7 +27,7 @@ struct CircleButtonView: View {
 
 struct CircleButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        CircleButtonView()
+        CircleButtonView(iconName: "info")
             .previewLayout(.sizeThatFits)
     }
 }
