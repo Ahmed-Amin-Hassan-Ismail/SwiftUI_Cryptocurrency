@@ -15,6 +15,7 @@
 		ACF9FDFD29524F10002F20EB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF9FDFC29524F10002F20EB /* HomeView.swift */; };
 		ACF9FE0129524FBF002F20EB /* CircleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF9FE0029524FBF002F20EB /* CircleButtonView.swift */; };
 		ACF9FE0329526136002F20EB /* CircleButtonAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF9FE0229526136002F20EB /* CircleButtonAnimationView.swift */; };
+		ACF9FE082952640D002F20EB /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF9FE072952640D002F20EB /* Coin.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		ACF9FDFC29524F10002F20EB /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		ACF9FE0029524FBF002F20EB /* CircleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButtonView.swift; sourceTree = "<group>"; };
 		ACF9FE0229526136002F20EB /* CircleButtonAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButtonAnimationView.swift; sourceTree = "<group>"; };
+		ACF9FE072952640D002F20EB /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				ACF9FDE529523EE8002F20EB /* CryptocurrencyApp.swift */,
 				ACF9FDF529524C03002F20EB /* Extensions */,
 				ACF9FDFE29524FA9002F20EB /* Components */,
+				ACF9FE06295263EE002F20EB /* Models */,
 				ACF9FDF829524EF2002F20EB /* Modules */,
 				ACF9FDE729523EE8002F20EB /* ContentView.swift */,
 				ACF9FDF329524AC5002F20EB /* Assets.xcassets */,
@@ -133,6 +136,14 @@
 				ACF9FE0229526136002F20EB /* CircleButtonAnimationView.swift */,
 			);
 			path = CircleButton;
+			sourceTree = "<group>";
+		};
+		ACF9FE06295263EE002F20EB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				ACF9FE072952640D002F20EB /* Coin.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,6 +222,7 @@
 				ACF9FE0129524FBF002F20EB /* CircleButtonView.swift in Sources */,
 				ACF9FDE629523EE8002F20EB /* CryptocurrencyApp.swift in Sources */,
 				ACF9FE0329526136002F20EB /* CircleButtonAnimationView.swift in Sources */,
+				ACF9FE082952640D002F20EB /* Coin.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
