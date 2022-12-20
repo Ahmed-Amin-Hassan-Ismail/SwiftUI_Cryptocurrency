@@ -14,6 +14,7 @@
 		ACF9FDF729524C15002F20EB /* Color+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF9FDF629524C15002F20EB /* Color+EXT.swift */; };
 		ACF9FDFD29524F10002F20EB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF9FDFC29524F10002F20EB /* HomeView.swift */; };
 		ACF9FE0129524FBF002F20EB /* CircleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF9FE0029524FBF002F20EB /* CircleButtonView.swift */; };
+		ACF9FE0329526136002F20EB /* CircleButtonAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF9FE0229526136002F20EB /* CircleButtonAnimationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		ACF9FDF629524C15002F20EB /* Color+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+EXT.swift"; sourceTree = "<group>"; };
 		ACF9FDFC29524F10002F20EB /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		ACF9FE0029524FBF002F20EB /* CircleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButtonView.swift; sourceTree = "<group>"; };
+		ACF9FE0229526136002F20EB /* CircleButtonAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButtonAnimationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				ACF9FE0029524FBF002F20EB /* CircleButtonView.swift */,
+				ACF9FE0229526136002F20EB /* CircleButtonAnimationView.swift */,
 			);
 			path = CircleButton;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 				ACF9FDE829523EE8002F20EB /* ContentView.swift in Sources */,
 				ACF9FE0129524FBF002F20EB /* CircleButtonView.swift in Sources */,
 				ACF9FDE629523EE8002F20EB /* CryptocurrencyApp.swift in Sources */,
+				ACF9FE0329526136002F20EB /* CircleButtonAnimationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
