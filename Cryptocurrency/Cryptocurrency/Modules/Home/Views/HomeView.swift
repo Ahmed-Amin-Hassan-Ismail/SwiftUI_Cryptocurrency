@@ -10,17 +10,29 @@ import SwiftUI
 struct HomeView: View {
     
     //MARK: - Variables
+    @EnvironmentObject private var homeViewModel: HomeViewModel
     @State private var showPortfolio: Bool = false
     
     //MARK: - Body
     var body: some View {
         ZStack {
-            // background layer
+            
             homeBackground
             
             VStack {
-                // header View
+                
                 homeHeader
+                
+                columnTitle
+                
+                if !showPortfolio {
+                   allCoinsList
+                        .transition(.move(edge: .leading))
+                } else {
+                    portfolioCoinsList
+                        .transition(.move(edge: .trailing))
+                }
+               
                 
                 Spacer(minLength: 0)
             }
@@ -38,7 +50,7 @@ extension HomeView {
     }
     
     //MARK: - Header View
-    var homeHeader: some View {
+    private var homeHeader: some View {
         HStack {
             CircleButtonView(iconName: showPortfolio ? "plus" : "info")
                 .animation(.none)
@@ -67,6 +79,48 @@ extension HomeView {
         }
         .padding(.horizontal)
     }
+    
+    //MARK: - columnTitle
+    private var columnTitle: some View {
+        HStack {
+            Text("Coins")
+            Spacer()
+            
+            if showPortfolio {
+                Text("Holdings")
+            }
+            
+            Text("Price")
+                .frame(width: UIScreen.main.bounds.width / 3.5, alignment: .trailing)
+            
+        }
+        .foregroundColor(Color.theme.secondaryText)
+        .padding(.horizontal)
+    }
+    
+    //MARK: - allCoinsList
+    private var allCoinsList: some View {
+        List {
+            ForEach(homeViewModel.allCoins) { coin in
+                CoinRowView(coin: coin, showHoldingColumn: false)
+                    .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
+            }
+        }
+        .listStyle(.plain)
+    }
+    
+        //MARK: - portfolioCoinsList
+    private var portfolioCoinsList: some View {
+        List {
+            ForEach(homeViewModel.portfolio) { coin in
+                CoinRowView(coin: coin, showHoldingColumn: true)
+                    .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
+            }
+        }
+        .listStyle(.plain)
+    }
+    
+    
 }
 
 
@@ -75,6 +129,8 @@ struct HomeView_Previews: PreviewProvider {
         NavigationView {
             HomeView()
                 .navigationBarHidden(true)
+                .preferredColorScheme(.dark)
         }
+        .environmentObject(HomeViewModel())
     }
 }
