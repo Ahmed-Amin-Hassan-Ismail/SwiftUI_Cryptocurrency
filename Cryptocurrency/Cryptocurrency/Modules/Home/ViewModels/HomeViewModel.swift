@@ -13,6 +13,7 @@ final class HomeViewModel: ObservableObject {
     //MARK: - Variables
     @Published var allCoins: [Coin] = []
     @Published var portfolio: [Coin] = []
+    @Published var searchText: String = ""
     
     private var coinDataService = CoinDataService()
     private var cancellables = Set<AnyCancellable>()

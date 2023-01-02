@@ -11,6 +11,8 @@
 		AC47FF6F2963571A00A49920 /* CoinImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47FF6E2963571A00A49920 /* CoinImageViewModel.swift */; };
 		AC47FF712963576900A49920 /* ImageDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47FF702963576900A49920 /* ImageDataService.swift */; };
 		AC47FF73296360B300A49920 /* LocalFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47FF72296360B300A49920 /* LocalFileManager.swift */; };
+		AC57001C2963711700FAEE8F /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC57001B2963711700FAEE8F /* SearchBarView.swift */; };
+		AC57001E296376EB00FAEE8F /* UIApplication+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC57001D296376EB00FAEE8F /* UIApplication+EXT.swift */; };
 		ACAA03EE2953AF6A0021DFD7 /* CoinRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAA03ED2953AF6A0021DFD7 /* CoinRowView.swift */; };
 		ACAA03F02953B00E0021DFD7 /* PreviewProvider+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAA03EF2953B00E0021DFD7 /* PreviewProvider+EXT.swift */; };
 		ACCBBE2A2958A061003BA86D /* Double+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCBBE292958A061003BA86D /* Double+EXT.swift */; };
@@ -33,6 +35,8 @@
 		AC47FF6E2963571A00A49920 /* CoinImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinImageViewModel.swift; sourceTree = "<group>"; };
 		AC47FF702963576900A49920 /* ImageDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDataService.swift; sourceTree = "<group>"; };
 		AC47FF72296360B300A49920 /* LocalFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFileManager.swift; sourceTree = "<group>"; };
+		AC57001B2963711700FAEE8F /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
+		AC57001D296376EB00FAEE8F /* UIApplication+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+EXT.swift"; sourceTree = "<group>"; };
 		ACAA03ED2953AF6A0021DFD7 /* CoinRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRowView.swift; sourceTree = "<group>"; };
 		ACAA03EF2953B00E0021DFD7 /* PreviewProvider+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PreviewProvider+EXT.swift"; sourceTree = "<group>"; };
 		ACCBBE292958A061003BA86D /* Double+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+EXT.swift"; sourceTree = "<group>"; };
@@ -69,6 +73,14 @@
 				AC47FF6E2963571A00A49920 /* CoinImageViewModel.swift */,
 			);
 			path = CoinImage;
+			sourceTree = "<group>";
+		};
+		AC57001A2963710600FAEE8F /* SearchBar */ = {
+			isa = PBXGroup;
+			children = (
+				AC57001B2963711700FAEE8F /* SearchBarView.swift */,
+			);
+			path = SearchBar;
 			sourceTree = "<group>";
 		};
 		ACCBBE2F2958B962003BA86D /* Services */ = {
@@ -136,6 +148,7 @@
 				ACF9FDF629524C15002F20EB /* Color+EXT.swift */,
 				ACAA03EF2953B00E0021DFD7 /* PreviewProvider+EXT.swift */,
 				ACCBBE292958A061003BA86D /* Double+EXT.swift */,
+				AC57001D296376EB00FAEE8F /* UIApplication+EXT.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -177,6 +190,7 @@
 		ACF9FDFE29524FA9002F20EB /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				AC57001A2963710600FAEE8F /* SearchBar */,
 				AC47FF6B296356E400A49920 /* CoinImage */,
 				ACF9FDFF29524FB1002F20EB /* CircleButton */,
 			);
@@ -275,11 +289,13 @@
 				ACCBBE2A2958A061003BA86D /* Double+EXT.swift in Sources */,
 				ACAA03EE2953AF6A0021DFD7 /* CoinRowView.swift in Sources */,
 				AC47FF73296360B300A49920 /* LocalFileManager.swift in Sources */,
+				AC57001E296376EB00FAEE8F /* UIApplication+EXT.swift in Sources */,
 				ACCBBE56295A31F4003BA86D /* NetworkManager.swift in Sources */,
 				ACF9FDF729524C15002F20EB /* Color+EXT.swift in Sources */,
 				AC47FF6D2963570E00A49920 /* CoinImageView.swift in Sources */,
 				ACF9FDFD29524F10002F20EB /* HomeView.swift in Sources */,
 				ACAA03F02953B00E0021DFD7 /* PreviewProvider+EXT.swift in Sources */,
+				AC57001C2963711700FAEE8F /* SearchBarView.swift in Sources */,
 				ACF9FDE829523EE8002F20EB /* ContentView.swift in Sources */,
 				ACF9FE0129524FBF002F20EB /* CircleButtonView.swift in Sources */,
 				ACCBBE2E2958ABE6003BA86D /* HomeViewModel.swift in Sources */,
