@@ -61,6 +61,11 @@ struct PortfolioView: View {
                 }
                 
             }
+            .onChange(of: homeViewModel.searchText) { newValue in
+                if newValue.isEmpty {
+                    removeSelectedCoin()
+                }
+            }
         }
     }
 }
