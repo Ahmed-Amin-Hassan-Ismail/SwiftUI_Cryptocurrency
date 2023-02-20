@@ -97,16 +97,56 @@ extension HomeView {
     //MARK: - columnTitle
     private var columnTitle: some View {
         HStack {
-            Text("Coins")
+            HStack(spacing: 4) {
+                Text("Coins")
+                Image(systemName: "chevron.down")
+                    .opacity((homeViewModel.sortOption == .rank || homeViewModel.sortOption == .rankReversed) ? 1.0 : 0.0)
+                    .rotationEffect(Angle(degrees: homeViewModel.sortOption == .rank ? 0 : 180))
+            }
+            .onTapGesture {
+                withAnimation(.default) {
+                    homeViewModel.sortOption = (homeViewModel.sortOption == .rank) ? .rankReversed : .rank
+                }
+            }
+            
             Spacer()
             
             if showPortfolio {
-                Text("Holdings")
+                HStack(spacing: 4) {
+                    Text("Holdings")
+                    Image(systemName: "chevron.down")
+                        .opacity((homeViewModel.sortOption == .holdings || homeViewModel.sortOption == .holdingsReserved) ? 1.0 : 0.0)
+                        .rotationEffect(Angle(degrees: homeViewModel.sortOption == .holdings ? 0 : 180))
+                }
+                .onTapGesture {
+                    withAnimation(.default) {
+                        homeViewModel.sortOption = (homeViewModel.sortOption == .holdings) ? .holdingsReserved : .holdings
+                    }
+                }
             }
             
-            Text("Price")
+            HStack(spacing: 4) {
+                Text("Price")
+                Image(systemName: "chevron.down")
+                    .opacity((homeViewModel.sortOption == .price || homeViewModel.sortOption == .priceReversed) ? 1.0 : 0.0)
+                    .rotationEffect(Angle(degrees: homeViewModel.sortOption == .price ? 0 : 180))
+            }
                 .frame(width: UIScreen.main.bounds.width / 3.5,
                        alignment: .trailing)
+                .onTapGesture {
+                    withAnimation(.default) {
+                        homeViewModel.sortOption = (homeViewModel.sortOption == .price) ? .priceReversed : .price
+                    }
+                }
+            
+            Button {
+                withAnimation(.linear(duration: 2.0)) {
+                    
+                }
+            } label: {
+                Image(systemName: "")
+            }
+
             
         }
         .font(.caption)

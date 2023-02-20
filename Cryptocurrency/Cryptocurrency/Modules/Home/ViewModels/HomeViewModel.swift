@@ -10,12 +10,21 @@ import Combine
 
 final class HomeViewModel: ObservableObject {
     
+    //MARK: - Enum
+    
+    enum SortOption {
+        case rank, rankReversed
+        case holdings, holdingsReserved
+        case price, priceReversed
+    }
+    
     //MARK: - Variables
     
     @Published var allCoins: [Coin] = []
     @Published var portfolio: [Coin] = []
     @Published var searchText: String = ""
     @Published var statistics: [Statistic] = []
+    @Published var sortOption: SortOption = .holdings
     
     
     private let coinDataService = CoinDataService()
@@ -34,13 +43,20 @@ final class HomeViewModel: ObservableObject {
     
     //MARK: - Public Methods
     
+    func updatePortfolio(coin: Coin, amount: Double) {
+        portfolioDataservice.updatePortfolio(coin: coin, amoun: amount )
+    }
+    
+    
+    //MARK: - Private Methods
+    
     private func addSubscribers() {
         
         // update allCoins
         $searchText
-            .combineLatest(coinDataService.$allCoins)
+            .combineLatest(coinDataService.$allCoins, $sortOption)
             .debounce(for: .seconds(0.5), scheduler: RunLoop.main)
-            .map(filterCoins)
+            .map(filterAndSortCoins)
             .sink { [weak self] coins in
                 guard let self = self else { return }
                 self.allCoins = coins
@@ -59,29 +75,19 @@ final class HomeViewModel: ObservableObject {
         // update portfolio
         $allCoins
             .combineLatest(portfolioDataservice.$savedEntities)
-            .map({ (coins, portfolioEntity) -> [Coin] in
-                coins
-                    .compactMap { coin in
-                        guard let entity = portfolioEntity.first(where: {$0.coinId == coin.id}) else {
-                            return nil
-                        }
-                        
-                        return coin.updateHoldings(amount: entity.amount)
-                    }
-            })
+            .map(mapAllCoinsToPortfolioCoins)
             .sink { [weak self] coin in
                 guard let self = self else { return }
-                self.portfolio = coin
+                self.portfolio = self.sortPortfolioCoinsIfNeeded(coins: coin)
             }
             .store(in: &cancellable)
     }
     
-    func updatePortfolio(coin: Coin, amount: Double) {
-        portfolioDataservice.updatePortfolio(coin: coin, amoun: amount )
+    private func filterAndSortCoins(text: String, coins: [Coin], sortOption: SortOption) -> [Coin]{
+        var updatedCoins = filterCoins(text: text, coins: coins)
+        sortCoins(sort: sortOption, coins: &updatedCoins)
+        return updatedCoins
     }
-    
-    
-    //MARK: - Private Methods
     
     private func filterCoins(text: String, coins: [Coin]) -> [Coin] {
         guard !text.isEmpty else {
@@ -93,6 +99,19 @@ final class HomeViewModel: ObservableObject {
             $0.symbol.lowercased().contains(text.lowercased()) ||
             $0.id.lowercased().contains(text.lowercased())
         })
+    }
+    
+    private func sortCoins(sort: SortOption, coins: inout [Coin]) {
+        switch sort {
+        case .rank, .holdings:
+            coins.sort(by: { $0.rank < $1.rank })
+        case .rankReversed, .holdingsReserved:
+            coins.sort(by: { $0.rank > $1.rank })
+        case .price:
+            coins.sort(by: { $0.currentPrice > $1.currentPrice })
+        case .priceReversed:
+            coins.sort(by: { $0.currentPrice < $1.currentPrice })
+        }
     }
     
     private func mapGlobalMarketData(marketData: MarketData?) -> [Statistic] {
@@ -115,5 +134,27 @@ final class HomeViewModel: ObservableObject {
         ])
         
         return statistics
+    }
+    
+    private func mapAllCoinsToPortfolioCoins(coins: [Coin], portfolioEntity: [PortfolioEntity]) -> [Coin] {
+        coins
+            .compactMap { coin in
+                guard let entity = portfolioEntity.first(where: {$0.coinId == coin.id}) else {
+                    return nil
+                }
+                
+                return coin.updateHoldings(amount: entity.amount)
+            }
+    }
+    
+    private func sortPortfolioCoinsIfNeeded(coins: [Coin]) -> [Coin] {
+        switch sortOption {
+        case .holdings:
+            return coins.sorted(by: { $0.currentHoldingsValue > $1.currentHoldingsValue })
+        case .holdingsReserved:
+            return coins.sorted(by: { $0.currentHoldingsValue < $1.currentHoldingsValue })
+        default:
+            return coins
+        }
     }
 }
