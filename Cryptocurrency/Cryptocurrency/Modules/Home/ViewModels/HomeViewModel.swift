@@ -22,6 +22,7 @@ final class HomeViewModel: ObservableObject {
     
     @Published var allCoins: [Coin] = []
     @Published var portfolio: [Coin] = []
+    @Published var isLoading: Bool = false
     @Published var searchText: String = ""
     @Published var statistics: [Statistic] = []
     @Published var sortOption: SortOption = .holdings
@@ -43,6 +44,13 @@ final class HomeViewModel: ObservableObject {
     
     //MARK: - Public Methods
     
+    func reloadData() {
+        isLoading = true
+        coinDataService.getCoins()
+        marketDataService.getMarketData()
+        HapticManager.notification(type: .success)
+    }
+    
     func updatePortfolio(coin: Coin, amount: Double) {
         portfolioDataservice.updatePortfolio(coin: coin, amoun: amount )
     }
@@ -63,15 +71,6 @@ final class HomeViewModel: ObservableObject {
             }
             .store(in: &cancellable)
         
-        // update market
-        marketDataService.$marketData
-            .map(mapGlobalMarketData)
-            .sink { [weak self] statistics in
-                guard let self = self else { return }
-                self.statistics = statistics
-            }
-            .store(in: &cancellable)
-        
         // update portfolio
         $allCoins
             .combineLatest(portfolioDataservice.$savedEntities)
@@ -81,6 +80,18 @@ final class HomeViewModel: ObservableObject {
                 self.portfolio = self.sortPortfolioCoinsIfNeeded(coins: coin)
             }
             .store(in: &cancellable)
+        
+        // update market
+        marketDataService.$marketData
+            .combineLatest($portfolio)
+            .map(mapGlobalMarketData)
+            .sink { [weak self] statistics in
+                guard let self = self else { return }                
+                self.statistics = statistics
+                self.isLoading = false
+            }
+            .store(in: &cancellable)
+        
     }
     
     private func filterAndSortCoins(text: String, coins: [Coin], sortOption: SortOption) -> [Coin]{
@@ -114,7 +125,7 @@ final class HomeViewModel: ObservableObject {
         }
     }
     
-    private func mapGlobalMarketData(marketData: MarketData?) -> [Statistic] {
+    private func mapGlobalMarketData(marketData: MarketData?, portfolioCoins: [Coin]) -> [Statistic] {
         var statistics = [Statistic]()
         
         guard let data = marketData else {
@@ -124,7 +135,9 @@ final class HomeViewModel: ObservableObject {
         let marketCap = Statistic(title: "Market Cap", value: data.marketCap, percentageChange: data.marketCapChangePercentage24HUsd)
         let volume = Statistic(title: "24h Volume", value: data.volume)
         let btcDominance = Statistic(title: "BTC Dominance", value: data.btcDominance)
-        let portfolio = Statistic(title: "Portfolio Value", value: "$0.00", percentageChange: 0)
+        let portfolio = Statistic(title: "Portfolio Value",
+                                  value: getProtfolioValueAndPercentageVaue(portfolioCoins: portfolioCoins).protfolioValue.asCurrencyWithTwoDecimal(),
+                                  percentageChange: getProtfolioValueAndPercentageVaue(portfolioCoins: portfolioCoins).percentageValue)
         
         statistics.append(contentsOf: [
             marketCap,
@@ -134,6 +147,27 @@ final class HomeViewModel: ObservableObject {
         ])
         
         return statistics
+    }
+    
+    private func getProtfolioValueAndPercentageVaue(portfolioCoins: [Coin]) -> (protfolioValue: Double, percentageValue: Double) {
+        let portfolioValue =
+        portfolioCoins
+            .map({ $0.currentHoldingsValue})
+            .reduce(0, +)
+        
+        let previousValue =
+        portfolioCoins
+            .map { coin -> Double in
+                let currentValue = coin.currentHoldingsValue
+                let percentageValue = coin.priceChangePercentage24H ?? 0 / 100
+                let previousValue = currentValue / (1 + percentageValue)
+                return previousValue
+            }
+            .reduce(0, +)
+        
+        let percentageChange = ((portfolioValue - previousValue) / previousValue) * 100
+        
+        return (portfolioValue, percentageChange)
     }
     
     private func mapAllCoinsToPortfolioCoins(coins: [Coin], portfolioEntity: [PortfolioEntity]) -> [Coin] {
