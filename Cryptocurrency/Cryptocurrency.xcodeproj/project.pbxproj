@@ -18,6 +18,8 @@
 		ACAA03F02953B00E0021DFD7 /* PreviewProvider+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAA03EF2953B00E0021DFD7 /* PreviewProvider+EXT.swift */; };
 		ACAED14F29A2EF6700FDDA0D /* PortfolioContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ACAED14D29A2EF6700FDDA0D /* PortfolioContainer.xcdatamodeld */; };
 		ACAED15129A2EFB000FDDA0D /* PortfolioDataservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAED15029A2EFB000FDDA0D /* PortfolioDataservice.swift */; };
+		ACB92E2729A6B94200233EE7 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB92E2629A6B94200233EE7 /* DetailView.swift */; };
+		ACB92E2929A6C39A00233EE7 /* LoadingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB92E2829A6C39A00233EE7 /* LoadingDetailView.swift */; };
 		ACBB5D4A2964B149002FB59E /* Statistic.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBB5D492964B149002FB59E /* Statistic.swift */; };
 		ACBB5D4D2964B1ED002FB59E /* StatisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBB5D4C2964B1ED002FB59E /* StatisticView.swift */; };
 		ACBB5D4F2964B506002FB59E /* HomeStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBB5D4E2964B506002FB59E /* HomeStatisticsView.swift */; };
@@ -52,6 +54,8 @@
 		ACAA03EF2953B00E0021DFD7 /* PreviewProvider+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PreviewProvider+EXT.swift"; sourceTree = "<group>"; };
 		ACAED14E29A2EF6700FDDA0D /* PortfolioContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PortfolioContainer.xcdatamodel; sourceTree = "<group>"; };
 		ACAED15029A2EFB000FDDA0D /* PortfolioDataservice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioDataservice.swift; sourceTree = "<group>"; };
+		ACB92E2629A6B94200233EE7 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		ACB92E2829A6C39A00233EE7 /* LoadingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingDetailView.swift; sourceTree = "<group>"; };
 		ACBB5D492964B149002FB59E /* Statistic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistic.swift; sourceTree = "<group>"; };
 		ACBB5D4C2964B1ED002FB59E /* StatisticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticView.swift; sourceTree = "<group>"; };
 		ACBB5D4E2964B506002FB59E /* HomeStatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStatisticsView.swift; sourceTree = "<group>"; };
@@ -102,6 +106,31 @@
 				AC57001B2963711700FAEE8F /* SearchBarView.swift */,
 			);
 			path = SearchBar;
+			sourceTree = "<group>";
+		};
+		ACB92E2329A6B91300233EE7 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				ACB92E2529A6B92300233EE7 /* ViewModel */,
+				ACB92E2429A6B91E00233EE7 /* Views */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		ACB92E2429A6B91E00233EE7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				ACB92E2829A6C39A00233EE7 /* LoadingDetailView.swift */,
+				ACB92E2629A6B94200233EE7 /* DetailView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		ACB92E2529A6B92300233EE7 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		ACBB5D4B2964B1DB002FB59E /* StatisticView */ = {
@@ -189,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				ACF9FDF929524EF9002F20EB /* Home */,
+				ACB92E2329A6B91300233EE7 /* Detail */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -335,7 +365,9 @@
 				ACBB5D4D2964B1ED002FB59E /* StatisticView.swift in Sources */,
 				ACF9FDF729524C15002F20EB /* Color+EXT.swift in Sources */,
 				AC47FF6D2963570E00A49920 /* CoinImageView.swift in Sources */,
+				ACB92E2729A6B94200233EE7 /* DetailView.swift in Sources */,
 				ACF9FDFD29524F10002F20EB /* HomeView.swift in Sources */,
+				ACB92E2929A6C39A00233EE7 /* LoadingDetailView.swift in Sources */,
 				ACAA03F02953B00E0021DFD7 /* PreviewProvider+EXT.swift in Sources */,
 				AC57001C2963711700FAEE8F /* SearchBarView.swift in Sources */,
 				ACF9FDE829523EE8002F20EB /* ContentView.swift in Sources */,

@@ -10,11 +10,16 @@ import SwiftUI
 struct HomeView: View {
     
     //MARK: - Variables
+    
     @EnvironmentObject private var homeViewModel: HomeViewModel
     @State private var showPortfolio: Bool = false
     @State private var showPortfolioView: Bool = false
+    @State private var showDetailCoin: Bool = false
+    @State private var selectedCoin: Coin? = nil
+    
     
     //MARK: - Body
+    
     var body: some View {
         ZStack {
             
@@ -46,6 +51,13 @@ struct HomeView: View {
                 Spacer(minLength: 0)
             }
         }
+        .background(
+            NavigationLink(
+                destination: LoadingDetailView(coin: $selectedCoin),
+                isActive: $showDetailCoin,
+                label: { EmptyView() }
+            )
+        )
     }
 }
 
@@ -162,6 +174,9 @@ extension HomeView {
             ForEach(homeViewModel.allCoins) { coin in
                 CoinRowView(coin: coin, showHoldingColumn: false)
                     .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
+                    .onTapGesture {
+                        segue(coin: coin)
+                    }
             }
         }
         .listStyle(.plain)
@@ -173,12 +188,24 @@ extension HomeView {
             ForEach(homeViewModel.portfolio) { coin in
                 CoinRowView(coin: coin, showHoldingColumn: true)
                     .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
+                    .onTapGesture {
+                        segue(coin: coin)
+                    }
             }
         }
         .listStyle(.plain)
     }
     
     
+}
+
+//MARK: - Private Methods
+
+extension HomeView {
+    private func segue(coin: Coin) {
+        selectedCoin = coin
+        showDetailCoin.toggle()
+    }
 }
 
 
