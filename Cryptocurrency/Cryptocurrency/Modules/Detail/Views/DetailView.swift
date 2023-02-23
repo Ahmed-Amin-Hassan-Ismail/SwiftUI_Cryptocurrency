@@ -11,12 +11,15 @@ struct DetailView: View {
     
     //MARK: - Properties
     
-    let coin: Coin
+    @StateObject private var detailCoinViewModel: CoinDetailViewModel
+    
+    private let coin: Coin
     
     //MARK: - Init
     
     init(coin: Coin) {
         self.coin = coin
+        self._detailCoinViewModel = StateObject(wrappedValue: CoinDetailViewModel(coin: coin))
     }
     
     //MARK: - Body
