@@ -22,7 +22,6 @@ struct DetailView: View {
     //MARK: - Init
     
     init(coin: Coin) {
-        print("We have initialized \(coin.name)")
         self._coinDetailViewModel = StateObject(wrappedValue: CoinDetailViewModel(coin: coin))
     }
     
@@ -30,22 +29,24 @@ struct DetailView: View {
     
     var body: some View {
         ScrollView {
-            VStack(spacing: 20) {
-                Text("")
-                    .frame(height: 150)
-                                
-                overviewTitle
-                Divider()
-                overviewGrid
+            VStack {
+                ChartView(coin: coinDetailViewModel.getCoinDetail())
+                    .padding(.vertical)
                 
-                
-                additionalTitle
-                Divider()                
-                additionalGrid
-                
+                VStack(spacing: 20) {
+                                    
+                    overviewTitle
+                    Divider()
+                    overviewGrid
+                    
+                    
+                    additionalTitle
+                    Divider()
+                    additionalGrid
+                    
+                }
+                .padding()
             }
-            .padding()
-            
         }
         .navigationTitle(coinDetailViewModel.getCoinDetail().name)
         .toolbar {

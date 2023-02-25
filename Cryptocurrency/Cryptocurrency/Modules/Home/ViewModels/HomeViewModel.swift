@@ -30,7 +30,7 @@ final class HomeViewModel: ObservableObject {
     
     private let coinDataService = CoinDataService()
     private let marketDataService = MarketDataService()
-    private let portfolioDataservice = PortfolioDataservice()
+    private let portfolioDataservice = PortfolioDataService()
     
     private var cancellable = Set<AnyCancellable>()
     

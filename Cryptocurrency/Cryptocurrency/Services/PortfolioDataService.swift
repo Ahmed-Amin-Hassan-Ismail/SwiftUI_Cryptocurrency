@@ -1,5 +1,5 @@
 //
-//  PortfolioDataservice.swift
+//  PortfolioDataService.swift
 //  Cryptocurrency
 //
 //  Created by Ahmed Amin on 20/02/2023.
@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 
 
-final class PortfolioDataservice {
+final class PortfolioDataService {
     
     //MARK: - Properties
     
