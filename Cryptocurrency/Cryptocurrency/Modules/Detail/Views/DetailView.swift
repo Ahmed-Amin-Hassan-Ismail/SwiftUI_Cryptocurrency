@@ -11,7 +11,7 @@ struct DetailView: View {
     
     //MARK: - Properties
     
-    @StateObject private var detailCoinViewModel: CoinDetailViewModel
+    @StateObject private var coinDetailViewModel: CoinDetailViewModel
     
     private let columns: [GridItem] = [
         GridItem(.flexible()),
@@ -23,7 +23,7 @@ struct DetailView: View {
     
     init(coin: Coin) {
         print("We have initialized \(coin.name)")
-        self._detailCoinViewModel = StateObject(wrappedValue: CoinDetailViewModel(coin: coin))
+        self._coinDetailViewModel = StateObject(wrappedValue: CoinDetailViewModel(coin: coin))
     }
     
     //MARK: - Body
@@ -47,7 +47,28 @@ struct DetailView: View {
             .padding()
             
         }
-        .navigationTitle(detailCoinViewModel.getCoinDetail().name)
+        .navigationTitle(coinDetailViewModel.getCoinDetail().name)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing, content: {
+              navigationBarTrailingItem
+            })
+        }
+    }
+}
+
+//MARK: - Navigation Tool Bar
+
+extension DetailView {
+    
+    private var navigationBarTrailingItem: some View {
+        HStack {
+            Text(coinDetailViewModel.getCoinDetail().symbol.uppercased())
+                .font(.headline)
+                .foregroundColor(Color.theme.secondaryText)
+            CoinImageView(coin: coinDetailViewModel.getCoinDetail())
+                .frame(width: 25, height: 25)
+        }
+        
     }
 }
 
@@ -71,7 +92,7 @@ extension DetailView {
             spacing: columnSpacing,
             pinnedViews: [],
             content: {
-                ForEach(detailCoinViewModel.overviewStatistics) { stat in
+                ForEach(coinDetailViewModel.overviewStatistics) { stat in
                    StatisticView(state: stat)
                 }
             })
@@ -97,7 +118,7 @@ extension DetailView {
             spacing: columnSpacing,
             pinnedViews: [],
             content: {
-                ForEach(detailCoinViewModel.additionalStatistics) { stat in
+                ForEach(coinDetailViewModel.additionalStatistics) { stat in
                    StatisticView(state: stat)
                 }
             })
