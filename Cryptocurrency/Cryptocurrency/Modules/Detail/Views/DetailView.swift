@@ -12,6 +12,7 @@ struct DetailView: View {
     //MARK: - Properties
     
     @StateObject private var coinDetailViewModel: CoinDetailViewModel
+    @State private var showFullDescription: Bool = false
     
     private let columns: [GridItem] = [
         GridItem(.flexible()),
@@ -37,8 +38,8 @@ struct DetailView: View {
                                     
                     overviewTitle
                     Divider()
+                    descriptionSection
                     overviewGrid
-                    
                     
                     additionalTitle
                     Divider()
@@ -84,6 +85,33 @@ extension DetailView {
             .fontWeight(.bold)
             .foregroundColor(Color.theme.accent)
             .frame(maxWidth: .infinity, alignment: .leading)
+    }
+    
+    private var descriptionSection: some View {
+        ZStack {
+            if let coinDescription = coinDetailViewModel.coinDescription,
+               !coinDescription.isEmpty {
+                VStack(alignment: .leading) {
+                    Text(coinDescription)
+                        .font(.callout)
+                        .foregroundColor(Color.theme.secondaryText)
+                        .lineLimit(showFullDescription ? nil : 3)
+                    
+                    Button {
+                        withAnimation(.easeInOut) {
+                            showFullDescription.toggle()
+                        }
+                    } label: {
+                        Text(showFullDescription ? "Less" : "Read more...")
+                            .font(.caption)
+                            .fontWeight(.bold)
+                            .padding(.vertical, 4)
+                    }
+                    .accentColor(.blue)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+            }
+        }
     }
     
     private var overviewGrid: some View {

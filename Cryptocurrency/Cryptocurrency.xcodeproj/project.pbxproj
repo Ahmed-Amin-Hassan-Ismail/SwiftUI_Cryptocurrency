@@ -18,6 +18,7 @@
 		ACAA03F02953B00E0021DFD7 /* PreviewProvider+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAA03EF2953B00E0021DFD7 /* PreviewProvider+EXT.swift */; };
 		ACADCF4829AA9FAA003D4C69 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACADCF4729AA9FAA003D4C69 /* ChartView.swift */; };
 		ACADCF4A29AAADD4003D4C69 /* Date+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACADCF4929AAADD4003D4C69 /* Date+EXT.swift */; };
+		ACADCF4C29AAB6F1003D4C69 /* String+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACADCF4B29AAB6F1003D4C69 /* String+EXT.swift */; };
 		ACAED14F29A2EF6700FDDA0D /* PortfolioContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ACAED14D29A2EF6700FDDA0D /* PortfolioContainer.xcdatamodeld */; };
 		ACAED15129A2EFB000FDDA0D /* PortfolioDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAED15029A2EFB000FDDA0D /* PortfolioDataService.swift */; };
 		ACB92E2729A6B94200233EE7 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB92E2629A6B94200233EE7 /* DetailView.swift */; };
@@ -59,6 +60,7 @@
 		ACAA03EF2953B00E0021DFD7 /* PreviewProvider+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PreviewProvider+EXT.swift"; sourceTree = "<group>"; };
 		ACADCF4729AA9FAA003D4C69 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		ACADCF4929AAADD4003D4C69 /* Date+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+EXT.swift"; sourceTree = "<group>"; };
+		ACADCF4B29AAB6F1003D4C69 /* String+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+EXT.swift"; sourceTree = "<group>"; };
 		ACAED14E29A2EF6700FDDA0D /* PortfolioContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PortfolioContainer.xcdatamodel; sourceTree = "<group>"; };
 		ACAED15029A2EFB000FDDA0D /* PortfolioDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioDataService.swift; sourceTree = "<group>"; };
 		ACB92E2629A6B94200233EE7 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				ACCBBE292958A061003BA86D /* Double+EXT.swift */,
 				AC57001D296376EB00FAEE8F /* UIApplication+EXT.swift */,
 				ACADCF4929AAADD4003D4C69 /* Date+EXT.swift */,
+				ACADCF4B29AAB6F1003D4C69 /* String+EXT.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				ACF9FDF729524C15002F20EB /* Color+EXT.swift in Sources */,
 				AC47FF6D2963570E00A49920 /* CoinImageView.swift in Sources */,
 				ACB92E2729A6B94200233EE7 /* DetailView.swift in Sources */,
+				ACADCF4C29AAB6F1003D4C69 /* String+EXT.swift in Sources */,
 				ACF9FDFD29524F10002F20EB /* HomeView.swift in Sources */,
 				ACB92E2929A6C39A00233EE7 /* LoadingDetailView.swift in Sources */,
 				ACAA03F02953B00E0021DFD7 /* PreviewProvider+EXT.swift in Sources */,
