@@ -45,6 +45,8 @@ struct DetailView: View {
                     Divider()
                     additionalGrid
                     
+                    websiteSection
+                    
                 }
                 .padding()
             }
@@ -151,6 +153,30 @@ extension DetailView {
                    StatisticView(state: stat)
                 }
             })
+    }
+}
+
+//MARK: - Links
+
+extension DetailView {
+    
+    private var websiteSection: some View {
+        VStack(alignment: .leading, spacing: 20) {
+            if let website = coinDetailViewModel.websiteURL,
+               let url = URL(string: website) {
+                
+                Link("Website", destination: url)
+            }
+            
+            if let reddit = coinDetailViewModel.redditURL,
+               let url = URL(string: reddit) {
+                
+                Link("Reddit", destination: url)
+            }
+        }
+        .font(.headline)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .accentColor(.blue)
     }
 }
 
