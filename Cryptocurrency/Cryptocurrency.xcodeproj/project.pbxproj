@@ -13,6 +13,8 @@
 		AC47FF73296360B300A49920 /* LocalFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47FF72296360B300A49920 /* LocalFileManager.swift */; };
 		AC57001C2963711700FAEE8F /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC57001B2963711700FAEE8F /* SearchBarView.swift */; };
 		AC57001E296376EB00FAEE8F /* UIApplication+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC57001D296376EB00FAEE8F /* UIApplication+EXT.swift */; };
+		AC58574D29AEA09E00C5C5CA /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC58574C29AEA09E00C5C5CA /* SettingsView.swift */; };
+		AC58575029AEA0AF00C5C5CA /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC58574F29AEA0AF00C5C5CA /* SettingsViewModel.swift */; };
 		AC7BB04529A433FD00AA0D48 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7BB04429A433FD00AA0D48 /* HapticManager.swift */; };
 		ACAA03EE2953AF6A0021DFD7 /* CoinRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAA03ED2953AF6A0021DFD7 /* CoinRowView.swift */; };
 		ACAA03F02953B00E0021DFD7 /* PreviewProvider+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAA03EF2953B00E0021DFD7 /* PreviewProvider+EXT.swift */; };
@@ -55,6 +57,8 @@
 		AC47FF72296360B300A49920 /* LocalFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFileManager.swift; sourceTree = "<group>"; };
 		AC57001B2963711700FAEE8F /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		AC57001D296376EB00FAEE8F /* UIApplication+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+EXT.swift"; sourceTree = "<group>"; };
+		AC58574C29AEA09E00C5C5CA /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		AC58574F29AEA0AF00C5C5CA /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		AC7BB04429A433FD00AA0D48 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		ACAA03ED2953AF6A0021DFD7 /* CoinRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRowView.swift; sourceTree = "<group>"; };
 		ACAA03EF2953B00E0021DFD7 /* PreviewProvider+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PreviewProvider+EXT.swift"; sourceTree = "<group>"; };
@@ -118,6 +122,31 @@
 				AC57001B2963711700FAEE8F /* SearchBarView.swift */,
 			);
 			path = SearchBar;
+			sourceTree = "<group>";
+		};
+		AC58574729AEA06D00C5C5CA /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				AC58574929AEA07F00C5C5CA /* ViewModel */,
+				AC58574829AEA07800C5C5CA /* Views */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		AC58574829AEA07800C5C5CA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AC58574C29AEA09E00C5C5CA /* SettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AC58574929AEA07F00C5C5CA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AC58574F29AEA0AF00C5C5CA /* SettingsViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		ACADCF4629AA9FA1003D4C69 /* ChartView */ = {
@@ -243,6 +272,7 @@
 			children = (
 				ACF9FDF929524EF9002F20EB /* Home */,
 				ACB92E2329A6B91300233EE7 /* Detail */,
+				AC58574729AEA06D00C5C5CA /* Settings */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -386,6 +416,7 @@
 				ACAA03EE2953AF6A0021DFD7 /* CoinRowView.swift in Sources */,
 				ACAED14F29A2EF6700FDDA0D /* PortfolioContainer.xcdatamodeld in Sources */,
 				AC47FF73296360B300A49920 /* LocalFileManager.swift in Sources */,
+				AC58575029AEA0AF00C5C5CA /* SettingsViewModel.swift in Sources */,
 				ACF6CCDD29A7FC3E006A9735 /* CoinDetail.swift in Sources */,
 				AC57001E296376EB00FAEE8F /* UIApplication+EXT.swift in Sources */,
 				ACBB5D4F2964B506002FB59E /* HomeStatisticsView.swift in Sources */,
@@ -415,6 +446,7 @@
 				ACF6CCE129A7FCD1006A9735 /* CoinDetailDataService.swift in Sources */,
 				ACBB5D4A2964B149002FB59E /* Statistic.swift in Sources */,
 				AC47FF712963576900A49920 /* ImageDataService.swift in Sources */,
+				AC58574D29AEA09E00C5C5CA /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
