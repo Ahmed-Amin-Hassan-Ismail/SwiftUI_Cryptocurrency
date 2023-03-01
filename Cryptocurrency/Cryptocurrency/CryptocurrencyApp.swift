@@ -11,6 +11,7 @@ import SwiftUI
 struct CryptocurrencyApp: App {
     
     @StateObject private var homeViewModel = HomeViewModel()
+    @State private var showLaunchView: Bool = true
     
     init() {
         UINavigationBar.appearance().largeTitleTextAttributes = [
@@ -24,11 +25,23 @@ struct CryptocurrencyApp: App {
     
     var body: some Scene {
         WindowGroup {
-            NavigationView {
-                HomeView()
-                    .navigationBarHidden(true)
+            ZStack {
+                
+                NavigationView {
+                    HomeView()
+                        .navigationBarHidden(true)
+                }
+                .environmentObject(homeViewModel)
+                
+                
+                ZStack {
+                    if showLaunchView {
+                        LaunchView(showLaunchView: $showLaunchView)
+                            .transition(.move(edge: .leading))
+                    }
+                }
+                
             }
-            .environmentObject(homeViewModel)
         }
     }
 }
