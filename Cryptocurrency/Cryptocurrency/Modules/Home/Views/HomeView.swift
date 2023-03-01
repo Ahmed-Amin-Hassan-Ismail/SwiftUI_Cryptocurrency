@@ -44,13 +44,20 @@ struct HomeView: View {
                 columnTitle
                 
                 if !showPortfolio {
-                   allCoinsList
+                    allCoinsList
                         .transition(.move(edge: .leading))
-                } else {
-                    portfolioCoinsList
-                        .transition(.move(edge: .trailing))
                 }
-               
+                
+                if showPortfolio {
+                    ZStack(alignment: .top, content: {
+                        if homeViewModel.portfolio.isEmpty && homeViewModel.searchText.isEmpty {
+                            portfolioEmptyText
+                        } else {
+                            portfolioCoinsList
+                        }
+                    })
+                    .transition(.move(edge: .trailing))
+                }
                 
                 Spacer(minLength: 0)
             }
@@ -68,7 +75,7 @@ struct HomeView: View {
 
 extension HomeView {
     
-    //MARK: - Home Background 
+    //MARK: - Home Background
     var homeBackground: some View {
         Color.theme.background
             .ignoresSafeArea()
@@ -149,13 +156,13 @@ extension HomeView {
                     .opacity((homeViewModel.sortOption == .price || homeViewModel.sortOption == .priceReversed) ? 1.0 : 0.0)
                     .rotationEffect(Angle(degrees: homeViewModel.sortOption == .price ? 0 : 180))
             }
-                .frame(width: UIScreen.main.bounds.width / 3.5,
-                       alignment: .trailing)
-                .onTapGesture {
-                    withAnimation(.default) {
-                        homeViewModel.sortOption = (homeViewModel.sortOption == .price) ? .priceReversed : .price
-                    }
+            .frame(width: UIScreen.main.bounds.width / 3.5,
+                   alignment: .trailing)
+            .onTapGesture {
+                withAnimation(.default) {
+                    homeViewModel.sortOption = (homeViewModel.sortOption == .price) ? .priceReversed : .price
                 }
+            }
             
             Button {
                 withAnimation(.linear(duration: 2.0)) {
@@ -166,7 +173,7 @@ extension HomeView {
             }
             .rotationEffect(Angle(degrees: homeViewModel.isLoading ? 360 : 0),
                             anchor: .center)
-
+            
             
         }
         .font(.caption)
@@ -188,7 +195,7 @@ extension HomeView {
         .listStyle(.plain)
     }
     
-        //MARK: - portfolioCoinsList
+    //MARK: - portfolioCoinsList
     private var portfolioCoinsList: some View {
         List {
             ForEach(homeViewModel.portfolio) { coin in
@@ -200,6 +207,15 @@ extension HomeView {
             }
         }
         .listStyle(.plain)
+    }
+    
+    private var portfolioEmptyText: some View {
+        Text("You haven't added any coins to your portfolio yet. Click the +button to get started!")
+            .font(.callout)
+            .fontWeight(.medium)
+            .foregroundColor(Color.theme.accent)
+            .multilineTextAlignment(.center)
+            .padding(50)
     }
     
     

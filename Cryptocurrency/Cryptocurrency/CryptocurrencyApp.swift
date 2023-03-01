@@ -31,6 +31,7 @@ struct CryptocurrencyApp: App {
                     HomeView()
                         .navigationBarHidden(true)
                 }
+                .navigationViewStyle(.stack)
                 .environmentObject(homeViewModel)
                 
                 
