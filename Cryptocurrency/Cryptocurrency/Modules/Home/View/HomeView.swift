@@ -11,7 +11,9 @@ struct HomeView: View {
     
     //MARK: - Properties
     
-    @State private var showPortfolio: Bool = false
+    @EnvironmentObject private var viewModel: HomeViewModel
+    
+    private let rowEdgeInsets = EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 10)
     
     //MARK: - Body
     
@@ -23,6 +25,19 @@ struct HomeView: View {
             VStack {
                 
                 headerView
+                
+                columnTitles
+                
+                if viewModel.showPortfolio {
+                    
+                    protfolioCoinsList
+                        .transition(.move(edge: .trailing))
+                } else {
+                    
+                    allCoinsList
+                        .transition(.move(edge: .leading))
+                }
+                    
                 
                 Spacer(minLength: 0)
             }
@@ -44,14 +59,14 @@ extension HomeView {
     private var headerView: some View {
         
         HStack {
-            CircleButtonView(iconName: showPortfolio ? "plus" : "info")
+            CircleButtonView(iconName: viewModel.showPortfolio ? "plus" : "info")
                 .animation(.none)
                 .background(
-                    CircleButtonAnimationView(animate: $showPortfolio))
+                    CircleButtonAnimationView(animate: $viewModel.showPortfolio))
             
             Spacer()
             
-            Text(showPortfolio ? "Portfolio" : "Live Prices")
+            Text(viewModel.showPortfolio ? "Portfolio" : "Live Prices")
                 .font(.headline)
                 .fontWeight(.heavy)
                 .foregroundColor(Color.theme.accent)
@@ -60,14 +75,53 @@ extension HomeView {
             Spacer()
             
             CircleButtonView(iconName: "chevron.right")
-                .rotationEffect(Angle(degrees: showPortfolio ? 180 : 0.0))
+                .rotationEffect(Angle(degrees: viewModel.showPortfolio ? 180 : 0.0))
                 .onTapGesture {
                     withAnimation(.spring()) {
-                        showPortfolio.toggle()
+                        viewModel.showPortfolio.toggle()
                     }
                 }
         }
         .padding(.horizontal)
+    }
+    
+    private var columnTitles: some View {
+        HStack {
+            Text("Coin")
+            
+            Spacer()
+            
+            Text("Holding")
+                .opacity(viewModel.showPortfolio ? 1.0 : 0.0)
+            
+            Text("Price")
+                .frame(width: UIScreen.main.bounds.width / 3.5, alignment: .trailing)
+        }
+        .font(.caption)
+        .foregroundColor(Color.theme.secondaryText)
+        .padding(.horizontal)
+    }
+    
+    private var allCoinsList: some View {
+        
+        List {
+            ForEach(viewModel.coins ?? []) { coin in
+                CoinRowView(coin: coin, showHoldingColumn: false)
+                    .listRowInsets(rowEdgeInsets)
+            }
+        }
+        .listStyle(.plain)
+    }
+    
+    private var protfolioCoinsList: some View {
+        
+        List {
+            ForEach(viewModel.portfolioCoins ?? []) { coin in
+                CoinRowView(coin: coin, showHoldingColumn: true)
+                    .listRowInsets(rowEdgeInsets)
+            }
+        }
+        .listStyle(.plain)
     }
 }
 
@@ -79,12 +133,14 @@ struct HomeView_Previews: PreviewProvider {
                     .preferredColorScheme(.light)
                     .navigationBarHidden(true)
             }
+            .environmentObject(dev.homeViewModel)
             
             NavigationView {
                 HomeView()
                     .preferredColorScheme(.dark)
                     .navigationBarHidden(true)
             }
+            .environmentObject(dev.homeViewModel)
         }
     }
 }
