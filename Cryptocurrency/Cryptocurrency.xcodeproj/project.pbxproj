@@ -12,6 +12,7 @@
 		ACF282EA2A2F890F008342D8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACF282E92A2F890F008342D8 /* Preview Assets.xcassets */; };
 		ACF282F82A2F89C7008342D8 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF282F72A2F89C7008342D8 /* HomeView.swift */; };
 		ACF282FA2A2F89CF008342D8 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF282F92A2F89CF008342D8 /* HomeViewModel.swift */; };
+		ACF283022A2FB5AE008342D8 /* Color+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF283012A2FB5AE008342D8 /* Color+EXT.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		ACF282E92A2F890F008342D8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		ACF282F72A2F89C7008342D8 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		ACF282F92A2F89CF008342D8 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		ACF283012A2FB5AE008342D8 /* Color+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+EXT.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		ACF282F32A2F8993008342D8 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				ACF283002A2FB5A2008342D8 /* Extension */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -156,6 +159,14 @@
 			children = (
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		ACF283002A2FB5A2008342D8 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				ACF283012A2FB5AE008342D8 /* Color+EXT.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,6 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ACF282F82A2F89C7008342D8 /* HomeView.swift in Sources */,
+				ACF283022A2FB5AE008342D8 /* Color+EXT.swift in Sources */,
 				ACF282E32A2F890E008342D8 /* CryptocurrencyApp.swift in Sources */,
 				ACF282FA2A2F89CF008342D8 /* HomeViewModel.swift in Sources */,
 			);
@@ -287,7 +299,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -341,7 +353,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -367,7 +379,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -400,7 +412,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
