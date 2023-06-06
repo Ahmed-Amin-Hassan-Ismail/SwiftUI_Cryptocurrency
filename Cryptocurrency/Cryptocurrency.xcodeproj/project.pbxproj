@@ -8,17 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		ACF282E32A2F890E008342D8 /* CryptocurrencyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF282E22A2F890E008342D8 /* CryptocurrencyApp.swift */; };
-		ACF282E52A2F890E008342D8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF282E42A2F890E008342D8 /* ContentView.swift */; };
 		ACF282E72A2F890F008342D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACF282E62A2F890F008342D8 /* Assets.xcassets */; };
 		ACF282EA2A2F890F008342D8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACF282E92A2F890F008342D8 /* Preview Assets.xcassets */; };
+		ACF282F82A2F89C7008342D8 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF282F72A2F89C7008342D8 /* HomeView.swift */; };
+		ACF282FA2A2F89CF008342D8 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF282F92A2F89CF008342D8 /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		ACF282DF2A2F890E008342D8 /* Cryptocurrency.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cryptocurrency.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACF282E22A2F890E008342D8 /* CryptocurrencyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptocurrencyApp.swift; sourceTree = "<group>"; };
-		ACF282E42A2F890E008342D8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		ACF282E62A2F890F008342D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ACF282E92A2F890F008342D8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		ACF282F72A2F89C7008342D8 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		ACF282F92A2F89CF008342D8 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,9 +53,12 @@
 		ACF282E12A2F890E008342D8 /* Cryptocurrency */ = {
 			isa = PBXGroup;
 			children = (
-				ACF282E22A2F890E008342D8 /* CryptocurrencyApp.swift */,
-				ACF282E42A2F890E008342D8 /* ContentView.swift */,
-				ACF282E62A2F890F008342D8 /* Assets.xcassets */,
+				ACF282F02A2F8979008342D8 /* Application */,
+				ACF282F52A2F89A7008342D8 /* Utils */,
+				ACF282F32A2F8993008342D8 /* Core */,
+				ACF282F42A2F899E008342D8 /* Components */,
+				ACF282F22A2F898D008342D8 /* Modules */,
+				ACF282F12A2F8983008342D8 /* Resources */,
 				ACF282E82A2F890F008342D8 /* Preview Content */,
 			);
 			path = Cryptocurrency;
@@ -65,6 +70,92 @@
 				ACF282E92A2F890F008342D8 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		ACF282F02A2F8979008342D8 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				ACF282E22A2F890E008342D8 /* CryptocurrencyApp.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		ACF282F12A2F8983008342D8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				ACF282E62A2F890F008342D8 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		ACF282F22A2F898D008342D8 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				ACF282F62A2F89BA008342D8 /* Home */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		ACF282F32A2F8993008342D8 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		ACF282F42A2F899E008342D8 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		ACF282F52A2F89A7008342D8 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		ACF282F62A2F89BA008342D8 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				ACF282FF2A2F89EA008342D8 /* Service */,
+				ACF282FD2A2F89DC008342D8 /* Model */,
+				ACF282FC2A2F89D7008342D8 /* ViewModel */,
+				ACF282FB2A2F89D3008342D8 /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		ACF282FB2A2F89D3008342D8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				ACF282F72A2F89C7008342D8 /* HomeView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		ACF282FC2A2F89D7008342D8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				ACF282F92A2F89CF008342D8 /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		ACF282FD2A2F89DC008342D8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		ACF282FF2A2F89EA008342D8 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +228,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ACF282E52A2F890E008342D8 /* ContentView.swift in Sources */,
+				ACF282F82A2F89C7008342D8 /* HomeView.swift in Sources */,
 				ACF282E32A2F890E008342D8 /* CryptocurrencyApp.swift in Sources */,
+				ACF282FA2A2F89CF008342D8 /* HomeViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
