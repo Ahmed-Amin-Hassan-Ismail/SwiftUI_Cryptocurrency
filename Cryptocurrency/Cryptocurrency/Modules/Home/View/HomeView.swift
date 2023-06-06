@@ -47,7 +47,7 @@ extension HomeView {
             CircleButtonView(iconName: showPortfolio ? "plus" : "info")
                 .animation(.none)
                 .background(
-                CircleButtonAnimationView(animate: $showPortfolio))
+                    CircleButtonAnimationView(animate: $showPortfolio))
             
             Spacer()
             
@@ -73,9 +73,18 @@ extension HomeView {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            HomeView()
-                .navigationBarHidden(true)
+        Group {
+            NavigationView {
+                HomeView()
+                    .preferredColorScheme(.light)
+                    .navigationBarHidden(true)
+            }
+            
+            NavigationView {
+                HomeView()
+                    .preferredColorScheme(.dark)
+                    .navigationBarHidden(true)
+            }
         }
     }
 }

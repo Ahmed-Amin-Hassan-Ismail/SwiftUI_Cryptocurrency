@@ -8,6 +8,7 @@
 import Foundation
 
 struct Coin: Identifiable, Codable {
+    
     let id, symbol, name: String
     let image: String
     let currentPrice: Double
