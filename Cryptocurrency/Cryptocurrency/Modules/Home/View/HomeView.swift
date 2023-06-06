@@ -37,7 +37,7 @@ struct HomeView: View {
                     allCoinsList
                         .transition(.move(edge: .leading))
                 }
-                    
+                
                 
                 Spacer(minLength: 0)
             }
@@ -85,6 +85,7 @@ extension HomeView {
         .padding(.horizontal)
     }
     
+    //column titles
     private var columnTitles: some View {
         HStack {
             Text("Coin")
@@ -102,6 +103,7 @@ extension HomeView {
         .padding(.horizontal)
     }
     
+    //coins list
     private var allCoinsList: some View {
         
         List {
@@ -124,6 +126,8 @@ extension HomeView {
         .listStyle(.plain)
     }
 }
+
+//MARK: - Preview
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
