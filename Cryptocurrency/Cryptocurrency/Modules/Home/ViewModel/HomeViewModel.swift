@@ -14,6 +14,7 @@ final class HomeViewModel: ObservableObject {
     //MARK: - Properties
     
     @Published var showPortfolio: Bool = false
+    @Published var searchText: String = ""
     @Published var coins: [Coin]?
     @Published var portfolioCoins: [Coin]?
     

@@ -38,12 +38,11 @@ final class ImageDataService {
         if let data = fileManager.getImageDataFromLocal(imageName: imageName, fileName: fileName) {
             
             self.imageData = data
-            print("Fetch Images")
             
         } else {
             
             fetchCoinImage(with: coin.image)
-            print("Download Images")
+            
         }
     }
     
