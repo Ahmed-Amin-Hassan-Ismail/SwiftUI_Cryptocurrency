@@ -14,7 +14,9 @@ final class HomeViewModel: ObservableObject {
     //MARK: - Properties
     
     @Published var showPortfolio: Bool = false
+    @Published var showPortfolioView: Bool = false
     @Published var searchText: String = ""
+    @Published var selectedCoin: Coin?
     @Published var coins: [Coin]?
     @Published var portfolioCoins: [Coin]?
     @Published var statistics: [Statistic]?
@@ -60,6 +62,11 @@ final class HomeViewModel: ObservableObject {
             .store(in: &cancellables)
         
     }
+    
+    func didTapOnPlusButton() {
+        showPortfolioView.toggle()
+    }
+    
 }
 
 //MARK: - Search and Sort

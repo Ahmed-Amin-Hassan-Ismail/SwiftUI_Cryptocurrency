@@ -46,6 +46,15 @@ struct HomeView: View {
                 Spacer(minLength: 0)
             }
         }
+        .background(
+            NavigationLink("PortfolioView",
+                           destination: PortfolioView(),
+                           isActive: $viewModel.showPortfolioView
+                          )
+            .navigationBarTitleDisplayMode(.large)
+            
+            
+        )
     }
 }
 
@@ -66,7 +75,13 @@ extension HomeView {
             CircleButtonView(iconName: viewModel.showPortfolio ? "plus" : "info")
                 .animation(.none)
                 .background(
-                    CircleButtonAnimationView(animate: $viewModel.showPortfolio))
+                    CircleButtonAnimationView(animate: $viewModel.showPortfolio)
+                )
+                .onTapGesture {
+                    if viewModel.showPortfolio {
+                        viewModel.didTapOnPlusButton()
+                    }
+                }
             
             Spacer()
             
