@@ -22,6 +22,7 @@ final class HomeViewModel: ObservableObject {
     
     private let coinDataService = CoinDataService()
     private let marketDataService = MarketDataService()
+    private let portfolioDataService = PortfolioDataService()
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -34,10 +35,20 @@ final class HomeViewModel: ObservableObject {
     }
     
     
+    func didTapOnPlusButton() {
+        showPortfolioView.toggle()
+    }
+    
+    func updatePortfolio(coin: Coin, amount: Double) {
+        
+        portfolioDataService.updatePortfolio(coin: coin, amount: amount)
+    }
+    
+    
     //MARK: - Methods
     
     private func addSubscriber() {
-         
+        
         //update coins
         $searchText
             .combineLatest(coinDataService.$coins)
@@ -60,10 +71,25 @@ final class HomeViewModel: ObservableObject {
             }
             .store(in: &cancellables)
         
-    }
-    
-    func didTapOnPlusButton() {
-        showPortfolioView.toggle()
+        //update portfolio coins
+        $coins
+            .combineLatest(portfolioDataService.$savedPortfolioData)
+            .map { (coins, entities) -> [Coin]? in
+                
+                coins?.compactMap({ coin -> Coin? in
+                    guard let entity = entities?.first(where: { $0.coinId == coin.id }) else {
+                        return nil
+                    }
+                    
+                    return coin.updateHoldings(amount: entity.amount)
+                })
+            }
+            .sink { [weak self] portfolioCoins in
+                guard let self = self else { return }
+                self.portfolioCoins = portfolioCoins
+            }
+            .store(in: &cancellables)
+        
     }
     
 }
@@ -116,7 +142,7 @@ extension HomeViewModel {
         
         let btcDominance = Statistic(title: "BTC Dominance",
                                      value: data.btcDominance)
-         
+        
         let portfolio = Statistic(title: "Portfolio Value",
                                   value: "$0.00",
                                   percentageChange: 0)
