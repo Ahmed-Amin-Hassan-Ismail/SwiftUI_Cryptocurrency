@@ -16,16 +16,25 @@ final class PortfolioDataService {
     
     @Published var savedPortfolioData: [PortfolioItem]?
     
-    private lazy var container: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: containerName)
-        loadPersistentStores(container)
-        
-        return container
-    }()
-    
+    private let container: NSPersistentContainer
     private let containerName = "Portfolio"
-    private let entityName = "PortfolioItems"
+    private let entityName = "PortfolioItem"
     
+    
+    //MARK: - Init
+    
+    init() {
+        container = NSPersistentContainer(name: containerName)
+        container.loadPersistentStores { [weak self] data, error in
+            guard let self = self else { return }
+            guard error == nil else {
+                print("Error Loading Core Data ! \(error!.localizedDescription)")
+                return
+            }
+            
+            self.fetchPortfolioData()
+        }
+    }
     
     //MARK: PUBLIC
     
@@ -50,18 +59,6 @@ final class PortfolioDataService {
     
     
     //MARK: - PRIVATE
-    
-    private func loadPersistentStores(_ container: NSPersistentContainer ) {
-        container.loadPersistentStores { [weak self] data, error in
-            guard let self = self else { return }
-            guard error == nil else {
-                print("Error Loading Core Data ! \(error!.localizedDescription)")
-                return
-            }
-            
-            self.fetchPortfolioData()
-        }
-    }
     
     private func fetchPortfolioData() {
         let request = NSFetchRequest<PortfolioItem>(entityName: entityName)

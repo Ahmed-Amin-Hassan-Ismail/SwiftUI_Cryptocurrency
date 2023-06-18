@@ -62,7 +62,7 @@ extension PortfolioView {
                         .padding(4)
                         .onTapGesture {
                             withAnimation(.easeIn) {
-                                viewModel.selectedCoin = coin
+                                updateSelectedCoin(coin: coin)
                             }
                         }
                         .background(

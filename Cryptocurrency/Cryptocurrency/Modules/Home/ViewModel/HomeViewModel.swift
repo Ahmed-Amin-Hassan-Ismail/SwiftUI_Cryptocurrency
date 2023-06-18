@@ -144,8 +144,9 @@ extension HomeViewModel {
                                      value: data.btcDominance)
         
         let portfolio = Statistic(title: "Portfolio Value",
-                                  value: "$0.00",
-                                  percentageChange: 0)
+                                  value: getProtfolioValueAndPercentageVaue(portfolioCoins: portfolioCoins ?? []).protfolioValue.asCurrencyWithTwoDecimal(),
+                                  percentageChange: getProtfolioValueAndPercentageVaue(portfolioCoins: portfolioCoins ?? []).percentageValue)
+        
         
         statistics.append(contentsOf: [
             marketCap,
@@ -155,5 +156,26 @@ extension HomeViewModel {
         ])
         
         return statistics
+    }
+    
+    private func getProtfolioValueAndPercentageVaue(portfolioCoins: [Coin]) -> (protfolioValue: Double, percentageValue: Double) {
+        let portfolioValue =
+        portfolioCoins
+            .map({ $0.currentHoldingsValue})
+            .reduce(0, +)
+        
+        let previousValue =
+        portfolioCoins
+            .map { coin -> Double in
+                let currentValue = coin.currentHoldingsValue
+                let percentageValue = coin.priceChangePercentage24H ?? 0 / 100
+                let previousValue = currentValue / (1 + percentageValue)
+                return previousValue
+            }
+            .reduce(0, +)
+        
+        let percentageChange = ((portfolioValue - previousValue) / previousValue)
+        
+        return (portfolioValue, percentageChange)
     }
 }
