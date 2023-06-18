@@ -39,6 +39,11 @@ struct PortfolioView: View {
                 saveButton()
             }
         }
+        .onChange(of: homeViewModel.searchText, perform: { newValue in
+            if newValue.isEmpty {
+                removeSelectedCoin()
+            }
+        })
         .onDisappear {
             removeSelectedCoin()
         }
@@ -104,7 +109,7 @@ extension PortfolioView {
                 
                 Spacer()
                 
-                Text(viewModel.currentValue ?? "")
+                Text(viewModel.currentValue ?? "$0.00")
             }
         }
         .font(.headline)
