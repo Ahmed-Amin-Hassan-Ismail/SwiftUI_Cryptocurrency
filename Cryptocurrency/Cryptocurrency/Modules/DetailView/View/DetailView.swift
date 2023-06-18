@@ -11,12 +11,13 @@ struct DetailView: View {
     
     //MARK: - Properties
     
-    @Binding var coin: Coin?
+    @StateObject private var viewModel: DetailViewModel
     
     //MARK: - Init
     
-    init(coin: Binding<Coin?>) {
-        self._coin = coin
+    init(coin: Coin?) {
+        
+        self._viewModel = StateObject(wrappedValue: DetailViewModel(coin: coin))
     }
     
     var body: some View {
@@ -26,6 +27,6 @@ struct DetailView: View {
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(coin: .constant(dev.coin))
+        DetailView(coin: dev.coin)
     }
 }
