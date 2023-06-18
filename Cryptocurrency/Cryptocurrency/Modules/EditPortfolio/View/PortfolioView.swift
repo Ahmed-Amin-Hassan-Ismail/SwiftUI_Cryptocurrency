@@ -21,6 +21,7 @@ struct PortfolioView: View {
         
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
+                
                 SearchBarView(searchText: $homeViewModel.searchText)
                 
                 coinLogoList
@@ -32,6 +33,15 @@ struct PortfolioView: View {
             }
         }
         .navigationTitle("Edit Portfolio")
+        .toolbar {
+            
+            ToolbarItem(placement: .navigationBarTrailing) {
+                saveButton()
+            }
+        }
+        .onDisappear {
+            removeSelectedCoin()
+        }
     }
 }
 
@@ -100,6 +110,58 @@ extension PortfolioView {
         .font(.headline)
         .animation(.none)
         .padding()
+    }
+    
+    private func saveButton() -> some View {
+        
+        HStack(spacing: 0) {
+            
+            Image(systemName: "checkmark")
+                .opacity(viewModel.shouldShowCheckmark())
+            
+            Button {
+                
+                didTapOnSaveButton()
+                
+            } label: {
+                
+                Text("save".uppercased())
+                    .opacity(viewModel.shouldShowSaveButton())
+            }
+        }
+        .font(.headline)
+    }
+    
+    private func didTapOnSaveButton() {
+        
+        guard let coin = viewModel.selectedCoin,
+              let quantity = Double(viewModel.quantityText) else { return }
+        
+        //save to database
+        
+        //show checkmark
+        withAnimation(.easeIn) {
+            viewModel.showCheckmark = true
+            removeSelectedCoin()
+            
+        }
+        
+        //hide keyboard
+        UIApplication.shared.endEditing()
+        
+        //hide checkmark
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
+            withAnimation(.easeOut) {
+                viewModel.showCheckmark = false
+                
+            }
+        })
+    }
+    
+    private func removeSelectedCoin() {
+        viewModel.selectedCoin = nil
+        viewModel.quantityText = ""
+        homeViewModel.searchText = ""
     }
 }
 

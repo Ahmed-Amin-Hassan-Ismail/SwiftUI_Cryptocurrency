@@ -14,8 +14,10 @@ final class PortfolioViewModel: ObservableObject {
     //MARK: - Properties
     
     @Published var selectedCoin: Coin?
-    @Published var quantityText: String = ""
     @Published var currentValue: String?
+    
+    @Published var quantityText: String = ""
+    @Published var showCheckmark: Bool = false
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -28,6 +30,16 @@ final class PortfolioViewModel: ObservableObject {
     
     
     //MARK: - Methods
+    
+    func shouldShowCheckmark() -> Double {
+        
+        return showCheckmark ? 1.0 : 0.0
+    }
+    
+    func shouldShowSaveButton() -> Double {
+        
+        return (selectedCoin != nil && selectedCoin?.currentHoldings != Double(quantityText)) ? 1.0 : 0.0
+    }
     
     
     //MARK: - Private Methods
