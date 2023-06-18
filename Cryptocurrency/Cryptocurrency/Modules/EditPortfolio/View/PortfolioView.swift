@@ -11,7 +11,8 @@ struct PortfolioView: View {
     
     //MARK: - Properties
     
-    @EnvironmentObject private var viewModel: HomeViewModel
+    @StateObject private var viewModel = PortfolioViewModel()
+    @EnvironmentObject private var homeViewModel: HomeViewModel
     
     
     //MARK: - Body
@@ -20,9 +21,13 @@ struct PortfolioView: View {
         
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                SearchBarView(searchText: $viewModel.searchText)
+                SearchBarView(searchText: $homeViewModel.searchText)
                 
                 coinLogoList
+                
+                if viewModel.selectedCoin != nil {
+                    portfolioInputSection
+                }
                 
             }
         }
@@ -35,9 +40,8 @@ extension PortfolioView {
     
     private var coinLogoList: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            
             LazyHStack {
-                ForEach(viewModel.coins ?? []) { coin in
+                ForEach(homeViewModel.coins ?? []) { coin in
                     CoinLogoView(coin: coin)
                         .frame(width: 75)
                         .padding(4)
@@ -57,6 +61,45 @@ extension PortfolioView {
             .padding(.vertical, 5)
             .padding(.leading)
         }
+    }
+    
+    private var portfolioInputSection: some View {
+        
+        VStack(spacing: 10) {
+            
+            HStack {
+                Text("Current price of \(viewModel.selectedCoin?.symbol.uppercased() ?? "")")
+                
+                Spacer()
+                
+                Text(viewModel.selectedCoin?.currentPrice.asCurrencyWithSixDecimal() ?? "")
+            }
+            
+            Divider()
+            
+            HStack {
+                Text("Amount holding:")
+                
+                Spacer()
+                
+                TextField("EX: 1.4" , text: $viewModel.quantityText)
+                    .multilineTextAlignment(.trailing)
+                    .keyboardType(.decimalPad)
+            }
+            
+            Divider()
+            
+            HStack {
+                Text("Current Value")
+                
+                Spacer()
+                
+                Text(viewModel.currentValue ?? "")
+            }
+        }
+        .font(.headline)
+        .animation(.none)
+        .padding()
     }
 }
 

@@ -16,7 +16,6 @@ final class HomeViewModel: ObservableObject {
     @Published var showPortfolio: Bool = false
     @Published var showPortfolioView: Bool = false
     @Published var searchText: String = ""
-    @Published var selectedCoin: Coin?
     @Published var coins: [Coin]?
     @Published var portfolioCoins: [Coin]?
     @Published var statistics: [Statistic]?
