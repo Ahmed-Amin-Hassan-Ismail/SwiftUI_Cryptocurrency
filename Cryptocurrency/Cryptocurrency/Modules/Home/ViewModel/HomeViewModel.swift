@@ -23,11 +23,13 @@ final class HomeViewModel: ObservableObject {
     
     @Published var showPortfolio: Bool = false
     @Published var showPortfolioView: Bool = false
+    @Published var showDetailView: Bool = false
     @Published var isLoading: Bool = false
     @Published var searchText: String = ""
     @Published var coins: [Coin]?
     @Published var portfolioCoins: [Coin]?
     @Published var statistics: [Statistic]?
+    @Published var selectedCoin: Coin?
     @Published var sortOption: SortOption = .holdings
     
     private let coinDataService = CoinDataService()

@@ -21,6 +21,12 @@ struct HomeView: View {
         ZStack {
             
             backgroundView
+                .background(
+                    NavigationLink(isActive: $viewModel.showPortfolioView,
+                                   destination: { PortfolioView() },
+                                   label: { EmptyView() })
+                    .navigationBarTitleDisplayMode(.large)
+                )
             
             VStack {
                 
@@ -47,13 +53,9 @@ struct HomeView: View {
             }
         }
         .background(
-            NavigationLink("PortfolioView",
-                           destination: PortfolioView(),
-                           isActive: $viewModel.showPortfolioView
-                          )
-            .navigationBarTitleDisplayMode(.large)
-            
-            
+            NavigationLink(isActive: $viewModel.showDetailView,
+                           destination: { DetailView(coin: $viewModel.selectedCoin)},
+                           label: { EmptyView() })
         )
     }
 }
@@ -172,6 +174,9 @@ extension HomeView {
             ForEach(viewModel.coins ?? []) { coin in
                 CoinRowView(coin: coin, showHoldingColumn: false)
                     .listRowInsets(rowEdgeInsets)
+                    .onTapGesture {
+                        segue(coin: coin)
+                    }
             }
         }
         .listStyle(.plain)
@@ -183,9 +188,17 @@ extension HomeView {
             ForEach(viewModel.portfolioCoins ?? []) { coin in
                 CoinRowView(coin: coin, showHoldingColumn: true)
                     .listRowInsets(rowEdgeInsets)
+                    .onTapGesture {
+                        segue(coin: coin)
+                    }
             }
         }
         .listStyle(.plain)
+    }
+    
+    private func segue(coin: Coin?) {
+        viewModel.selectedCoin = coin
+        viewModel.showDetailView.toggle()
     }
 }
 
