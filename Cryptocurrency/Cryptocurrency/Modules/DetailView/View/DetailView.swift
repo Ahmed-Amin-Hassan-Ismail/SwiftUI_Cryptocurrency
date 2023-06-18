@@ -13,6 +13,12 @@ struct DetailView: View {
     
     @StateObject private var viewModel: DetailViewModel
     
+    private let gridItems: [GridItem] = [
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+    private let gridSpacing: CGFloat = 20.0
+    
     //MARK: - Init
     
     init(coin: Coin?) {
@@ -21,12 +27,87 @@ struct DetailView: View {
     }
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView {
+            VStack(spacing: 20) {
+                
+                Text("")
+                    .frame(height: 150)
+                
+                overviewTitle
+                
+                Divider()
+                
+                overviewBody
+                
+                
+                additionalTitle
+                
+                Divider()
+                
+                additionalBody
+            }
+        }
+        .navigationTitle(viewModel.coin?.name ?? "")
     }
 }
 
+//MARK: - SetupView
+
+extension DetailView {
+    
+    private var overviewTitle: some View {
+        
+        Text("Overview")
+            .font(.title)
+            .fontWeight(.bold)
+            .foregroundColor(Color.theme.accent)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding()
+    }
+    
+    private var overviewBody: some View {
+        
+        LazyVGrid(
+           columns: gridItems,
+           alignment: .leading,
+           spacing: gridSpacing) {
+               ForEach(viewModel.overviewStatistics ?? []) { statistic in
+                   StatisticView(statistic: statistic)
+               }
+           }
+           .padding(.horizontal)
+    }
+    
+    
+    private var additionalTitle: some View {
+        
+        Text("Additional Details")
+            .font(.title)
+            .fontWeight(.bold)
+            .foregroundColor(Color.theme.accent)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding()
+    }
+    
+    private var additionalBody: some View {
+        
+        LazyVGrid(
+           columns: gridItems,
+           alignment: .leading,
+           spacing: gridSpacing) {
+               ForEach(viewModel.additionalStatistics ?? []) { statistic in
+                   StatisticView(statistic: statistic)
+               }
+           }
+           .padding(.horizontal)
+    }
+}
+
+
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(coin: dev.coin)
+        NavigationView {
+            DetailView(coin: dev.coin)
+        }
     }
 }
