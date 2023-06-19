@@ -30,8 +30,8 @@ struct DetailView: View {
         ScrollView {
             VStack(spacing: 20) {
                 
-                Text("")
-                    .frame(height: 150)
+                ChartView(coin: viewModel.coin ?? DeveloperPreview.instance.coin)
+                    
                 
                 overviewTitle
                 
@@ -48,6 +48,11 @@ struct DetailView: View {
             }
         }
         .navigationTitle(viewModel.coin?.name ?? "")
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                navigationBarITem
+            }
+        }
     }
 }
 
@@ -100,6 +105,17 @@ extension DetailView {
                }
            }
            .padding(.horizontal)
+    }
+    
+    private var navigationBarITem: some View {
+        HStack {
+            Text(viewModel.coin?.symbol.uppercased() ?? "")
+                .font(.headline)
+                .foregroundColor(Color.theme.accent)
+            
+            CoinImageView(coin: viewModel.coin ?? DeveloperPreview.instance.coin )
+                .frame(width: 25, height: 25)
+        }
     }
 }
 
