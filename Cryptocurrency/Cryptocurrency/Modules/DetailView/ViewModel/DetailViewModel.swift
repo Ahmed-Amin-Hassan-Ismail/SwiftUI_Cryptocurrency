@@ -14,8 +14,11 @@ class DetailViewModel: ObservableObject {
     //MARK: - Properties
     
     @Published var coin: Coin?
+    @Published var coinDetail: CoinDetail?
     @Published var overviewStatistics: [Statistic]?
     @Published var additionalStatistics: [Statistic]?
+    
+    @Published var showFullDescription: Bool = false
     
     private let coinDetailService: CoinDetailDataService
     
@@ -30,6 +33,39 @@ class DetailViewModel: ObservableObject {
         self.addSubscriber()
     }
     
+    
+    //MARK: - PUBLIC
+    
+    var coinDescription: String? {
+        
+        return coinDetail?.description?.en?.removingHTMLOccurances
+    }
+    
+    var coinWebsiteURL: String? {
+        
+        return coinDetail?.links?.homepage?.first
+    }
+    
+    var coinRedditURL: String? {
+        
+        return coinDetail?.links?.subredditURL
+    }
+    
+    var buttonTitle: String {
+        
+        return showFullDescription ? "Less" : "Read more..."
+    }
+    
+    var desctiptionLineLimts: Int? {
+        
+        return showFullDescription ? nil : 3
+    }
+    
+    func didTapOnReadMore() {
+        
+        showFullDescription.toggle()
+    }
+    
     //MARK: - PRIVATE
     
     private func addSubscriber() {
@@ -41,6 +77,13 @@ class DetailViewModel: ObservableObject {
                 guard let self = self else { return }
                 self.overviewStatistics = returnedArray.overview
                 self.additionalStatistics = returnedArray.additional
+            }
+            .store(in: &cancellables)
+        
+        coinDetailService.$coinDetail
+            .sink { [weak self] coinDetail in
+                guard let self = self else { return }
+                self.coinDetail = coinDetail
             }
             .store(in: &cancellables)
     }

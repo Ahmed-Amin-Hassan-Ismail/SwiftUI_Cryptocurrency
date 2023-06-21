@@ -31,11 +31,13 @@ struct DetailView: View {
             VStack(spacing: 20) {
                 
                 ChartView(coin: viewModel.coin ?? DeveloperPreview.instance.coin)
-                    
+                
                 
                 overviewTitle
                 
                 Divider()
+                
+                overviewDescription
                 
                 overviewBody
                 
@@ -45,6 +47,10 @@ struct DetailView: View {
                 Divider()
                 
                 additionalBody
+                
+                Divider()
+                
+               coinWebsites
             }
         }
         .navigationTitle(viewModel.coin?.name ?? "")
@@ -70,22 +76,51 @@ extension DetailView {
             .padding()
     }
     
-    private var overviewBody: some View {
+    private var overviewDescription: some View {
         
+        ZStack {
+            if let description = viewModel.coinDescription,
+               !description.isEmpty {
+                
+                VStack(alignment: .leading, spacing: 5) {
+                    
+                    Text(description)
+                        .font(.callout)
+                        .foregroundColor(Color.theme.secondaryText)
+                        .lineLimit(viewModel.desctiptionLineLimts)
+                    
+                    Button {
+                        withAnimation(.easeIn) {
+                            viewModel.didTapOnReadMore()
+                        }
+                    } label: {
+                        Text(viewModel.buttonTitle)
+                            .font(.caption)
+                            .fontWeight(.bold)
+                            .foregroundColor(.blue)
+                    }
+                }
+                .padding(.horizontal)
+            }
+        }
+    }
+    
+    
+    
+    private var overviewBody: some View {
         LazyVGrid(
-           columns: gridItems,
-           alignment: .leading,
-           spacing: gridSpacing) {
-               ForEach(viewModel.overviewStatistics ?? []) { statistic in
-                   StatisticView(statistic: statistic)
-               }
-           }
-           .padding(.horizontal)
+            columns: gridItems,
+            alignment: .leading,
+            spacing: gridSpacing) {
+                ForEach(viewModel.overviewStatistics ?? []) { statistic in
+                    StatisticView(statistic: statistic)
+                }
+            }
+            .padding(.horizontal)
     }
     
     
     private var additionalTitle: some View {
-        
         Text("Additional Details")
             .font(.title)
             .fontWeight(.bold)
@@ -95,16 +130,35 @@ extension DetailView {
     }
     
     private var additionalBody: some View {
-        
         LazyVGrid(
-           columns: gridItems,
-           alignment: .leading,
-           spacing: gridSpacing) {
-               ForEach(viewModel.additionalStatistics ?? []) { statistic in
-                   StatisticView(statistic: statistic)
-               }
-           }
-           .padding(.horizontal)
+            columns: gridItems,
+            alignment: .leading,
+            spacing: gridSpacing) {
+                ForEach(viewModel.additionalStatistics ?? []) { statistic in
+                    StatisticView(statistic: statistic)
+                }
+            }
+            .padding(.horizontal)
+    }
+    
+    private var coinWebsites: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            if let website = viewModel.coinWebsiteURL,
+               let url = URL(string: website) {
+                
+                Link("Website", destination: url)
+            }
+            
+            if let reddit = viewModel.coinRedditURL,
+               let url = URL(string: reddit) {
+                
+                Link("Reddit", destination: url)
+            }
+        }
+        .font(.headline)
+        .foregroundColor(.blue)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.horizontal)
     }
     
     private var navigationBarITem: some View {
