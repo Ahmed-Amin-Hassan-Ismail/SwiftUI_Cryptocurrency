@@ -13,12 +13,13 @@ struct CryptocurrencyApp: App {
     //MARK: - Properties
     
     @StateObject private var viewModel = HomeViewModel()
+    @State private var shouldShowLaunchingScreen: Bool = true
     
     init() {
         UINavigationBar.appearance().largeTitleTextAttributes = [
             NSAttributedString.Key.foregroundColor : UIColor(Color.theme.accent)
         ]
-
+        
         UINavigationBar.appearance().titleTextAttributes = [
             NSAttributedString.Key.foregroundColor : UIColor(Color.theme.accent)
         ]
@@ -26,11 +27,25 @@ struct CryptocurrencyApp: App {
     
     var body: some Scene {
         WindowGroup {
-            NavigationView {
-                HomeView()
-                    .navigationBarHidden(true)
+            
+            ZStack {
+                
+                if shouldShowLaunchingScreen {
+                    
+                    LaunchScreenView(shouldShowLaunchingScreen: $shouldShowLaunchingScreen)
+                        .transition(.move(edge: .leading))
+                        .zIndex(2.0)
+                    
+                } else {
+                    
+                    NavigationView {
+                        HomeView()
+                            .navigationBarHidden(true)
+                    }
+                    .environmentObject(viewModel)
+                }
             }
-            .environmentObject(viewModel)
+            
         }
     }
 }
