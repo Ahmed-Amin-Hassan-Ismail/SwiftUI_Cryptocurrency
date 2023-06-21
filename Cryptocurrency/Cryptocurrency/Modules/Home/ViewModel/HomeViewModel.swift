@@ -24,6 +24,7 @@ final class HomeViewModel: ObservableObject {
     @Published var showPortfolio: Bool = false
     @Published var showPortfolioView: Bool = false
     @Published var showDetailView: Bool = false
+    @Published var showSettingsView: Bool = false
     @Published var isLoading: Bool = false
     @Published var searchText: String = ""
     @Published var coins: [Coin]?
@@ -49,6 +50,10 @@ final class HomeViewModel: ObservableObject {
     
     func didTapOnPlusButton() {
         showPortfolioView.toggle()
+    }
+    
+    func didTapOnSettingButton() {
+        showSettingsView.toggle()
     }
     
     func updatePortfolio(coin: Coin, amount: Double) {

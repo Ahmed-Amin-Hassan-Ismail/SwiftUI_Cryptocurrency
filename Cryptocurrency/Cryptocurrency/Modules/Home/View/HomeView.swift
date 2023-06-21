@@ -52,6 +52,8 @@ struct HomeView: View {
                 Spacer(minLength: 0)
             }
         }
+        .fullScreenCover(isPresented: $viewModel.showSettingsView,
+                         content: { SettingView() })
         .background(
             NavigationLink(isActive: $viewModel.showDetailView,
                            destination: { DetailView(coin: viewModel.selectedCoin)},
@@ -82,6 +84,8 @@ extension HomeView {
                 .onTapGesture {
                     if viewModel.showPortfolio {
                         viewModel.didTapOnPlusButton()
+                    } else {
+                        viewModel.didTapOnSettingButton()
                     }
                 }
             
